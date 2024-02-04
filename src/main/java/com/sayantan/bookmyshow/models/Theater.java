@@ -1,4 +1,14 @@
 package com.sayantan.bookmyshow.models;
 
-public class Theater {
+import lombok.Getter;
+import lombok.Setter;
+
+import java.util.List;
+
+@Getter
+@Setter
+public class Theater extends BaseModel{
+    private List<Screen> screens;
+    private String name;
+    private String address;
 }
