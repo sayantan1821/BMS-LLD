@@ -1,7 +1,10 @@
 package com.sayantan.bookmyshow.models;
 
-public enum SeatType {
-    GOLD,
-    SILVER,
-    PLATINUM
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
+public class SeatType extends BaseModel {
+    private String name;
 }

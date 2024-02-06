@@ -11,4 +11,5 @@ public class Payment extends BaseModel{
     private Booking booking;
     private String txnId;
     private PaymentStatus paymentStatus;
+    private PaymentProvider paymentProvider;
 }
