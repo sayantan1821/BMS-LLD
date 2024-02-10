@@ -1,6 +1,6 @@
 package com.sayantan.bookmyshow.models;
 
-import jakarta.persistence.Entity;
+import jakarta.persistence.*;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
@@ -10,10 +10,14 @@ import java.util.List;
 
 @Getter
 @Setter
-@Entity
+@Entity(name = "shows")
 public class Show extends BaseModel {
+    @ManyToOne
     private Movie movie;
+    @ManyToOne
     private Screen screen;
     private Date startTime, endTime;
-    List<Feature> features;
+    @Enumerated(EnumType.ORDINAL)
+    @ElementCollection
+    private List<Feature> features;
 }
