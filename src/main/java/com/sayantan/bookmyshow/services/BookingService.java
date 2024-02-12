@@ -22,12 +22,15 @@ public class BookingService {
     private final ShowSeatRepository showSeatRepository;
     private final ShowRepository showRepository;
     private final BookingRepository bookingRepository;
+    private final PriceCalculatorService priceCalculatorService;
     BookingService(UserRepository userRepository, ShowSeatRepository showSeatRepository,
-                   ShowRepository showRepository, BookingRepository bookingRepository) {
+                   ShowRepository showRepository, BookingRepository bookingRepository,
+                   PriceCalculatorService priceCalculatorService) {
         this.userRepository = userRepository;
         this.showSeatRepository = showSeatRepository;
         this.showRepository = showRepository;
         this.bookingRepository = bookingRepository;
+        this.priceCalculatorService = priceCalculatorService;
     }
     @Transactional(isolation = Isolation.SERIALIZABLE)
     public Booking bookMovie(long userId, List<Long> seatIds, long showId) {
@@ -58,7 +61,7 @@ public class BookingService {
         booking.setBookingStatus(BookingStatus.PENDING);
         booking.setShow(bookedShow);
         booking.setUser(bookedBy);
-        booking.setAmount(0);
+        booking.setAmount(priceCalculatorService.caculatePrice(savedShowSeats, bookedShow));
         booking.setPayments(new ArrayList<>());
         booking.setShowSeats(savedShowSeats);
 
