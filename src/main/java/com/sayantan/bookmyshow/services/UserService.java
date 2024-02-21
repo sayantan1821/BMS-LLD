@@ -3,6 +3,7 @@ package com.sayantan.bookmyshow.services;
 import com.sayantan.bookmyshow.models.User;
 import com.sayantan.bookmyshow.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -22,7 +23,8 @@ public class UserService {
         }
         User user = new User();
         user.setEmail(email);
-        user.setPassword(password);
+        BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+        user.setPassword(bCryptPasswordEncoder.encode(password));
         user.setBookings(new ArrayList<>());
 
         user = userRepository.save(user);

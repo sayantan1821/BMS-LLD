@@ -2,7 +2,6 @@ package com.sayantan.bookmyshow;
 
 import com.sayantan.bookmyshow.controllers.UserController;
 import com.sayantan.bookmyshow.dto.SignUpRequestDTO;
-import com.sayantan.bookmyshow.models.BaseModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
