@@ -1,6 +1,7 @@
 package com.sayantan.bookmyshow;
 
 import com.sayantan.bookmyshow.controllers.UserController;
+import com.sayantan.bookmyshow.dto.SignInRequestDTO;
 import com.sayantan.bookmyshow.dto.SignUpRequestDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -19,9 +20,14 @@ public class BookMyShowApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		SignUpRequestDTO signUpRequestDTO = new SignUpRequestDTO();
-		signUpRequestDTO.setEmail("a1@b.com");
-		signUpRequestDTO.setPassword("123");
-		userController.signUp(signUpRequestDTO);
+//		SignUpRequestDTO signUpRequestDTO = new SignUpRequestDTO();
+//		signUpRequestDTO.setEmail("a2@b.com");
+//		signUpRequestDTO.setPassword("123");
+//		System.out.println(userController.signUp(signUpRequestDTO));
+
+		SignInRequestDTO signInRequestDTO = new SignInRequestDTO();
+		signInRequestDTO.setEmail("a2@b.com");
+		signInRequestDTO.setPassword("1234");
+		System.out.println(userController.signIn(signInRequestDTO).getStatus());
 	}
 }

@@ -30,4 +30,16 @@ public class UserService {
         user = userRepository.save(user);
         return user;
     }
+    public User signIn(String email, String password) {
+        Optional<User> userOptional = userRepository.findByEmail(email);
+        if(userOptional.isEmpty()) {
+            throw new RuntimeException("User doesn't exist");
+        }
+        User user = userOptional.get();
+        BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+        if(bCryptPasswordEncoder.matches(password, user.getPassword())) {
+            return user;
+        }
+        throw new RuntimeException("Invalid password") ;
+    }
 }
